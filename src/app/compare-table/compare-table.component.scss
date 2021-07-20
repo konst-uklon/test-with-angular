@@ -1,0 +1,13 @@
+.compare-table {
+  &__title {
+    font-weight: 700;
+    white-space: nowrap;
+    border-bottom: 1.5px solid black;
+    margin-bottom: 10px;
+  }
+  &__body {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}

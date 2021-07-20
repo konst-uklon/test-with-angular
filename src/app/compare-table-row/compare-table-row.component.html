@@ -1,0 +1,24 @@
+<tr
+  *ngFor="let item of renderArr"
+  class="compare-table__row"
+  (click)="toggleValues($event)"
+>
+  <td
+    [ngClass]="{
+      'compare-table__cell': !item.firstItemIsMore,
+      'compare-table__cell compare-table__cell--active': item.firstItemIsMore
+    }"
+    [id]="item.id"
+  >
+    {{ item.firstItemName }}
+  </td>
+  <td
+    [ngClass]="{
+      'compare-table__cell compare-table__cell--active': !item.firstItemIsMore,
+      'compare-table__cell': item.firstItemIsMore
+    }"
+    [id]="item.id"
+  >
+    {{ item.secondItemName }}
+  </td>
+</tr>

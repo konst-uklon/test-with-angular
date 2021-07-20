@@ -1,1 +1,6 @@
-<p>reset-button works!</p>
+<button
+  [ngClass]="!isData ? 'reset-button reset-button__disabled' : 'reset-button'"
+  [disabled]="!isData"
+>
+  Reset
+</button>

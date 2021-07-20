@@ -1,0 +1,13 @@
+.score-table {
+  &__container {
+    max-width: 20em;
+    min-width: 15em;
+    box-shadow: none;
+    border-collapse: collapse;
+  }
+  &__title {
+    font-weight: 700;
+    border-bottom: 1.5px solid black;
+    margin-bottom: 10px;
+  }
+}

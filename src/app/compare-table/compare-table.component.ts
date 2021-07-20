@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-compare-table',
   templateUrl: './compare-table.component.html',
-  styleUrls: ['./compare-table.component.scss']
+  styleUrls: ['./compare-table.component.scss'],
 })
-export class CompareTableComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class CompareTableComponent {}

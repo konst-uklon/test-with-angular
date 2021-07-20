@@ -1,0 +1,7 @@
+<tr *ngFor="let item of arrWithScore" class="score-table__body">
+  <td class="score-table__body--item">{{ item.name }}</td>
+  <td class="score-table__body--score">{{ item.score }}</td>
+  <td class="score-table__body--win">
+    {{ item.score === highestScore ? "Winner" : "" }}
+  </td>
+</tr>

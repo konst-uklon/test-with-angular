@@ -1,1 +1,26 @@
-<p>user-input works!</p>
+<form class="user__form">
+  <input
+    class="user__input"
+    type="text"
+    placeholder="Add new item"
+    [(ngModel)]="newItemName"
+  />
+  <button
+    class="iser__submit"
+    type="submit"
+    name="submit"
+    (click)="addNewItem($event)"
+    [disabled]="newItemName === ''"
+  >
+    Add
+  </button>
+</form>
+
+<!-- <div
+  *ngIf="newItemName.invalid && (newItemName.dirty || newItemName.touched)"
+  class="alert alert-danger"
+>
+  <div *ngIf="newItemName.errors?.required">Name is required.</div>
+  <div *ngIf="newItemName.errors?.minlength">Name is too long.</div>
+  <div *ngIf="newItemName.errors?.forbiddenName">This item already exists.</div>
+</div> -->

@@ -1,0 +1,17 @@
+.app {
+  &-title {
+    text-align: center;
+    padding: 10px;
+  }
+  &-header {
+    display: flex;
+    justify-content: center;
+  }
+  &-content {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-start;
+    justify-items: center;
+  }
+}
