@@ -1,17 +1,13 @@
 <form class="user__form">
-  <input
-    class="user__input"
-    type="text"
-    placeholder="Add new item"
-    [(ngModel)]="newItemName"
-  />
+  <input class="user__input" type="text" placeholder="Add new item" />
+  <!-- [(ngModel)]="newItemName" -->
   <button
-    class="iser__submit"
+    class="user__submit"
     type="submit"
     name="submit"
     (click)="addNewItem($event)"
-    [disabled]="newItemName === ''"
   >
+    <!-- [disabled]="newItemName === ''" -->
     Add
   </button>
 </form>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RenderArrItemType } from './compare-table-row.types';
-import { UserItemType } from '../app-types/app-types';
+import { UserItemType } from '../../../app-types/app-types';
 
 @Component({
   selector: 'app-compare-table-row',

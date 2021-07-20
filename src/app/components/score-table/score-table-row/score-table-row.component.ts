@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserItemsArrType } from 'src/app/app-types/app-types';
 
 @Component({
   selector: 'app-score-table-row',

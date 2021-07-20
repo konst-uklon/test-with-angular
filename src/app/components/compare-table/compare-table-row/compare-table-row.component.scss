@@ -1,4 +1,12 @@
 .compare-table {
+  &__row {
+    display: flex;
+    justify-content: space-around;
+    padding: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 2px;
+  }
   &__row &__cell {
     text-align: center;
     padding: 10px 17px;

@@ -3,7 +3,9 @@
   <app-user-input></app-user-input>
 </div>
 <div class="app-content">
-  <app-score-table></app-score-table>
-  <app-compare-table></app-compare-table>
+  <app-score-table *ngIf="userData.length"></app-score-table>
+  <app-compare-table *ngIf="userData.length > 1"></app-compare-table>
 </div>
 <app-reset-button></app-reset-button>
+
+<!-- [data]="userData" -->

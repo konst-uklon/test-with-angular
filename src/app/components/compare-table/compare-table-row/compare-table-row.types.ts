@@ -1,4 +1,4 @@
-import { ValuesType } from '../app-types/app-types';
+import { ValuesType } from '../../../app-types/app-types';
 
 export interface RenderArrItemType {
   firstItemName: string;
