@@ -3,10 +3,6 @@
     Compare Table
   </caption>
   <tbody class="compare-table__body">
-    <app-compare-table-row
-      [dataForCompareTable]="dataForCompareTableRow"
-      [defaultData]="data"
-      class="compare-table__row--container"
-    ></app-compare-table-row>
+    <ng-content></ng-content>
   </tbody>
 </table>

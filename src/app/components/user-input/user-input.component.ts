@@ -8,7 +8,6 @@ import { UserItemType } from 'src/app/app-types/app-types';
 })
 export class UserInputComponent {
   @Input() data: UserItemType[];
-  newItemName: string = '';
 
   @Output() newItemEvent = new EventEmitter<string>();
   // error: boolean = false;

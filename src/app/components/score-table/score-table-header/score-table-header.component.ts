@@ -7,7 +7,12 @@ import { HeaderDataType } from '../score-table.types';
   styleUrls: ['./score-table-header.component.scss'],
 })
 export class ScoreTableHeaderComponent implements OnInit {
-  @Input() dataForRender: HeaderDataType[];
+  readonly dataForRender: HeaderDataType[] = [
+    { textContent: 'Item' },
+    { textContent: 'Score' },
+    { textContent: '' },
+  ];
+
   constructor() {}
 
   ngOnInit() {}

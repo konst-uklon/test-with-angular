@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserItemType, ValuesType } from './app-types/app-types';
 
 @Component({
@@ -6,18 +6,23 @@ import { UserItemType, ValuesType } from './app-types/app-types';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   readonly title: string = 'angular-test-app';
-  // private LSJson: string | null = localStorage.getItem('user-items');
-  // private localStorageData: UserItemType[] = this.LSJson
-  //   ? JSON.parse(this.LSJson)
-  //   : null;
-  public userData: UserItemType[] =
-    JSON.parse(localStorage.getItem('user-items')) || [];
+  userData: UserItemType[];
+  // JSON.parse(localStorage.getItem('user-items')) || [];
 
   resetAppData() {
     this.userData = [];
     localStorage.removeItem('user-items');
+  }
+
+  constructor() {}
+  ngDoCheck() {
+    console.log(this.userData);
+  }
+
+  ngOnInit() {
+    this.userData = JSON.parse(localStorage.getItem('user-items')) || [];
   }
 
   addNewItem(itemName: string) {
@@ -40,7 +45,7 @@ export class AppComponent {
     }
 
     // new data for app with new item
-    userData.push(newItem);
+    userData = [...userData, newItem];
     localStorage.setItem('user-items', JSON.stringify(userData));
   }
 }

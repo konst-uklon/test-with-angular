@@ -8,18 +8,41 @@ import { UserItemType } from '../../../app-types/app-types';
   styleUrls: ['./compare-table-row.component.scss'],
 })
 export class CompareTableRowComponent implements OnInit {
-  @Input() dataForCompareTable: RenderArrItemType[];
-  @Input() defaultData: UserItemType[];
-  renderArr: RenderArrItemType[];
+  dataForCompareTable: RenderArrItemType[];
+  @Input() data: UserItemType[];
 
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataForCompareTable = this.getRenderArr(this.data);
+  }
+
+  getRenderArr(dataArray) {
+    const numberOfItems: number = dataArray.length;
+    let arr: RenderArrItemType[] = [];
+
+    for (let i = 0; i < numberOfItems; i++) {
+      for (let u = i + 1; u < numberOfItems; u++) {
+        const firstItem = dataArray[i];
+        const secondItem = dataArray[u];
+        const { name, values } = firstItem;
+
+        arr.push({
+          firstItemName: name,
+          firstItemIsMore: values[u],
+          secondItemName: secondItem.name,
+          id: `${i}, ${u}`,
+        });
+      }
+    }
+
+    return arr;
+  }
 
   toggleValues(e: any) {
     const {
       target: { id },
     } = e;
-    let { defaultData } = this;
+    let { data } = this;
     const idArr = id.split(',').map((el: string) => +el); // create an id arr and convert all elements from string to numbers
     const [firstItemIndex, secondItemIndex] = idArr; //we have only 2 parameters, since we set them in the line 46 of this component
     const changeBool = (e: UserItemType, indexOfCompareElem: number) => {
@@ -27,7 +50,7 @@ export class CompareTableRowComponent implements OnInit {
       return e;
     };
 
-    defaultData.map(
+    data.map(
       (e, index) =>
         index === firstItemIndex // find the first element to compare
           ? changeBool(e, secondItemIndex) // change the value of the first compared element

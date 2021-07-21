@@ -6,14 +6,13 @@
     required
     #newItem
   />
-  <!-- [(ngModel)]="newItemName" -->
   <button
     class="user__submit"
     type="submit"
     name="submit"
     (click)="addNewItem(newItem.value)"
   >
-    <!-- [disabled]="newItemName === ''" -->
+    <!-- [disabled]="newItem.value === ''" -->
     Add
   </button>
 </form>

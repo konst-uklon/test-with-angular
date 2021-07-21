@@ -3,13 +3,9 @@
     Score Table
   </caption>
   <thead>
-    <app-score-table-header
-      [dataForRender]="headerData"
-    ></app-score-table-header>
+    <ng-content select="[header]"></ng-content>
   </thead>
   <tbody>
-    <app-score-table-row
-      [arrForRender]="dataArrForScoreTable"
-    ></app-score-table-row>
+    <ng-content select="[body]"></ng-content>
   </tbody>
 </table>
