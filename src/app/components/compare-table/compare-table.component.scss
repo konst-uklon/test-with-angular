@@ -10,4 +10,11 @@
     justify-content: flex-start;
     flex-direction: column;
   }
+  &__row--container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 50vw;
+  }
 }

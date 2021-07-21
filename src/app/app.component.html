@@ -1,6 +1,9 @@
 <h2 class="app-title">{{ title.toUpperCase() }}</h2>
 <div class="app-header">
-  <app-user-input></app-user-input>
+  <app-user-input
+    [data]="userData"
+    (newItemEvent)="addNewItem($event)"
+  ></app-user-input>
 </div>
 <div class="app-content">
   <app-score-table *ngIf="userData.length" [data]="userData"></app-score-table>
@@ -9,4 +12,7 @@
     [data]="userData"
   ></app-compare-table>
 </div>
-<app-reset-button></app-reset-button>
+<app-reset-button
+  [isData]="userData.length"
+  (click)="resetAppData()"
+></app-reset-button>

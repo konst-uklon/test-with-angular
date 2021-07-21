@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reset-button',
@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-button.component.scss'],
 })
 export class ResetButtonComponent {
-  isData = false; // change if some on page
+  @Input() isData; // change if some on page
 }

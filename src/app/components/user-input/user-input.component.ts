@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserItemType } from 'src/app/app-types/app-types';
 
 @Component({
   selector: 'app-user-input',
@@ -6,13 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-input.component.scss'],
 })
 export class UserInputComponent {
+  @Input() data: UserItemType[];
   newItemName: string = '';
+
+  @Output() newItemEvent = new EventEmitter<string>();
   // error: boolean = false;
   // errorMassage: string = '';
 
-  addNewItem(e: any) {
-    e.preventDefault();
-    console.log(this.newItemName);
+  addNewItem(value: string) {
+    this.newItemEvent.emit(value);
   }
 
   // newItem(e: any) {

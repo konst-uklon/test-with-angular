@@ -1,20 +1,24 @@
 .compare-table {
   &__row {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     margin: 2px;
+    width: fit-content;
+    background-color: rgb(227, 255, 220);
   }
   &__row &__cell {
     text-align: center;
     padding: 10px 17px;
+    margin: 2px;
   }
   &__cell {
     border: 1px solid rgba(200, 200, 200, 0.455);
     border-radius: 5px;
     text-transform: uppercase;
+    background-color: white;
     &--active {
       background-color: rgb(3, 166, 202);
     }
