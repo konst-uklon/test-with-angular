@@ -1,11 +1,12 @@
-<h2 class="app-title">Compare items App</h2>
+<h2 class="app-title">{{ title.toUpperCase() }}</h2>
 <div class="app-header">
   <app-user-input></app-user-input>
 </div>
 <div class="app-content">
-  <app-score-table *ngIf="userData.length"></app-score-table>
-  <app-compare-table *ngIf="userData.length > 1"></app-compare-table>
+  <app-score-table *ngIf="userData.length" [data]="userData"></app-score-table>
+  <app-compare-table
+    *ngIf="userData.length > 1"
+    [data]="userData"
+  ></app-compare-table>
 </div>
 <app-reset-button></app-reset-button>
-
-<!-- [data]="userData" -->

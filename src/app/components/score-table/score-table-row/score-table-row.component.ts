@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UserItemsArrType } from 'src/app/app-types/app-types';
+import { Component, Input, OnInit } from '@angular/core';
+import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
 
 @Component({
   selector: 'app-score-table-row',
@@ -7,26 +7,15 @@ import { UserItemsArrType } from 'src/app/app-types/app-types';
   styleUrls: ['./score-table-row.component.scss'],
 })
 export class ScoreTableRowComponent {
-  data = [
-    { name: '1', values: [null, true, true, true] },
-    { name: '2', values: [false, null, true, true] },
-    { name: '3', values: [false, false, null, true] },
-    { name: '4', values: [false, false, false, null] },
-  ];
+  @Input() arrForRender: UserItemType[];
 
-  arrWithScore = this.data.length
-    ? this.data
-        .map((e) => ({ score: this.sumOfScores(e.values), ...e })) // add score property to items
-        .sort((a, b) => b.score - a.score) // sort by highest score
-    : null;
+  highestScore: number | undefined;
 
-  highestScore: number | undefined = this.data.length // get the hightst score to define winner
-    ? this.arrWithScore[0].score
-    : null;
+  constructor() {}
 
-  sumOfScores(arr) {
-    let sum = 0;
-    arr.forEach((bool) => (bool ? (sum += 1) : null));
-    return sum;
+  ngOnInit() {
+    this.highestScore = this.arrForRender.length // get the hightst score to define winner
+      ? this.arrForRender[0].score
+      : null;
   }
 }

@@ -1,5 +1,5 @@
 <tr class="score-table__header">
-  <th class="score-table__header--item">Item</th>
-  <th class="score-table__header--score">Score</th>
-  <th class="score-table__header--win"></th>
+  <th class="score-table__header--item" *ngFor="let item of dataForRender">
+    {{ item.textContent }}
+  </th>
 </tr>
