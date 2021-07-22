@@ -9,10 +9,13 @@
     width: fit-content;
     background-color: rgb(227, 255, 220);
   }
-  &__row &__cell {
+  &__cell {
     text-align: center;
     padding: 10px 17px;
     margin: 2px;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
   &__cell {
     border: 1px solid rgba(200, 200, 200, 0.455);

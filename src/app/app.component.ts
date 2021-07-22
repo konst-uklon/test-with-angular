@@ -6,16 +6,11 @@ import { UserItemType, ValuesType } from './app-types/app-types';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   readonly title: string = 'angular-test-app';
   userData: UserItemType[] =
     JSON.parse(localStorage.getItem('user-items')) || [];
 
-  constructor() {}
-
-  ngOnInit() {
-    // this.userData = JSON.parse(localStorage.getItem('user-items')) || [];
-  }
   changeAppData(newData?: UserItemType[]) {
     console.log(newData);
 
@@ -34,7 +29,12 @@ export class AppComponent implements OnInit {
 
   deleteItem(id: string) {
     let { userData } = this;
-    const newData = userData.filter((el, index) => index !== +id);
+    const newData = userData
+      .filter((el, index) => index !== +id) // removing an item from app data
+      .map((el) => {
+        el.values.splice(+id, 1); // removing the dependency of the element in the values property from the deleted element
+        return el;
+      });
     this.changeAppData(newData);
   }
 

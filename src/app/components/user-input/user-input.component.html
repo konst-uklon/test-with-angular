@@ -1,27 +1,45 @@
 <form class="user__form">
   <input
-    class="user__input"
+    [ngClass]="
+      newItem.value.length === 0 ||
+      name.hasError('pattern') ||
+      name.hasError('required')
+        ? 'user__input user__input--error'
+        : 'user__input'
+    "
+    name="itemName"
     type="text"
     [placeholder]="data.length ? 'Add new item' : 'Add your first item!'"
     required
+    pattern="^[a-zA-Z0-9 ]+$"
+    maxlength="8"
+    [(ngModel)]="itemName"
+    #name="ngModel"
     #newItem
   />
+  <p class="user__error" [hidden]="!name.hasError('pattern')">Incorrect name</p>
+  <p class="user__error" [hidden]="!name.hasError('required')">Required</p>
+  <p class="user__error" [hidden]="!name.hasError('isUnique')">
+    This item already exists
+  </p>
+
   <button
-    class="user__submit"
+    [ngClass]="
+      newItem.value.length === 0 ||
+      name.hasError('pattern') ||
+      name.hasError('required')
+        ? 'user__submit user__submit--disable'
+        : 'user__submit'
+    "
     type="submit"
     name="submit"
     (click)="addNewItem(newItem.value)"
+    [disabled]="
+      newItem.value.length === 0 ||
+      name.hasError('pattern') ||
+      name.hasError('required')
+    "
   >
-    <!-- [disabled]="newItem.value === ''" -->
     Add
   </button>
 </form>
-
-<!-- <div
-  *ngIf="newItemName.invalid && (newItemName.dirty || newItemName.touched)"
-  class="alert alert-danger"
->
-  <div *ngIf="newItemName.errors?.required">Name is required.</div>
-  <div *ngIf="newItemName.errors?.minlength">Name is too long.</div>
-  <div *ngIf="newItemName.errors?.forbiddenName">This item already exists.</div>
-</div> -->
