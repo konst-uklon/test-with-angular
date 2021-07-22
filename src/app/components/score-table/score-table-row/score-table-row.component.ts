@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+} from '@angular/core';
 import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
 
 @Component({
@@ -6,7 +13,7 @@ import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
   templateUrl: './score-table-row.component.html',
   styleUrls: ['./score-table-row.component.scss'],
 })
-export class ScoreTableRowComponent {
+export class ScoreTableRowComponent implements OnInit, OnChanges {
   @Input() dataForRender: UserItemType[];
 
   @Output() deleteItemEvent = new EventEmitter<string>();
@@ -19,8 +26,8 @@ export class ScoreTableRowComponent {
   deleteItem(id: string) {
     this.deleteItemEvent.emit(id);
   }
-
-  ngOnInit() {
+  ngOnInit() {}
+  ngOnChanges() {
     this.arrForRender = this.dataForRender.length
       ? this.dataForRender
           .map((e) => ({ score: this.sumOfScores(e.values), ...e })) // add score property to items

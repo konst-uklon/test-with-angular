@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+} from '@angular/core';
 import { RenderArrItemType } from '../compare-table.types';
 import { UserItemType } from '../../../app-types/app-types';
 
@@ -7,7 +14,7 @@ import { UserItemType } from '../../../app-types/app-types';
   templateUrl: './compare-table-row.component.html',
   styleUrls: ['./compare-table-row.component.scss'],
 })
-export class CompareTableRowComponent implements OnInit {
+export class CompareTableRowComponent implements OnInit, OnChanges {
   dataForCompareTable: RenderArrItemType[];
   @Input() data: UserItemType[];
   @Output() toggleItemsEvent = new EventEmitter<string>();
@@ -17,7 +24,8 @@ export class CompareTableRowComponent implements OnInit {
   }
 
   constructor() {}
-  ngOnInit() {
+  ngOnInit() {}
+  ngOnChanges() {
     this.dataForCompareTable = this.getRenderArr(this.data);
   }
 
