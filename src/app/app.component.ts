@@ -8,21 +8,34 @@ import { UserItemType, ValuesType } from './app-types/app-types';
 })
 export class AppComponent implements OnInit {
   readonly title: string = 'angular-test-app';
-  userData: UserItemType[];
-  // JSON.parse(localStorage.getItem('user-items')) || [];
-
-  resetAppData() {
-    this.userData = [];
-    localStorage.removeItem('user-items');
-  }
+  userData: UserItemType[] =
+    JSON.parse(localStorage.getItem('user-items')) || [];
 
   constructor() {}
-  ngDoCheck() {
-    console.log(this.userData);
-  }
 
   ngOnInit() {
-    this.userData = JSON.parse(localStorage.getItem('user-items')) || [];
+    // this.userData = JSON.parse(localStorage.getItem('user-items')) || [];
+  }
+  changeAppData(newData?: UserItemType[]) {
+    console.log(newData);
+
+    if (newData) {
+      this.userData = newData;
+      localStorage.setItem('user-items', JSON.stringify(newData));
+    } else {
+      this.userData = [];
+      localStorage.removeItem('user-items');
+    }
+  }
+
+  resetAppData() {
+    this.changeAppData();
+  }
+
+  deleteItem(id: string) {
+    let { userData } = this;
+    const newData = userData.filter((el, index) => index !== +id);
+    this.changeAppData(newData);
   }
 
   addNewItem(itemName: string) {
@@ -45,7 +58,27 @@ export class AppComponent implements OnInit {
     }
 
     // new data for app with new item
-    userData = [...userData, newItem];
-    localStorage.setItem('user-items', JSON.stringify(userData));
+    const newData = [...userData, newItem];
+    this.changeAppData(newData);
+  }
+
+  changeRatio(id: string) {
+    let { userData } = this;
+    const idArr = id.split(',').map((el: string) => +el); // create an id arr and convert all elements from string to numbers
+    const [firstItemIndex, secondItemIndex] = idArr; //we have only 2 parameters, since we set them in the line 46 of this component
+    const changeBool = (e: UserItemType, indexOfCompareElem: number) => {
+      e.values[indexOfCompareElem] = !e.values[indexOfCompareElem]; // since all values are boolean, we can simply change them to their opposite
+      return e;
+    };
+
+    const newData = userData.map(
+      (e, index) =>
+        index === firstItemIndex // find the first element to compare
+          ? changeBool(e, secondItemIndex) // change the value of the first compared element
+          : index === secondItemIndex // find the second element to compare
+          ? changeBool(e, firstItemIndex) // change the value of the second compared element
+          : e // return the unchanged item if it hasn't been compared
+    );
+    this.changeAppData(newData);
   }
 }

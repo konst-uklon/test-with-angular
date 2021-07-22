@@ -10,12 +10,40 @@
     }
   }
   &__body {
+    position: relative;
     &--item {
       font-weight: 700;
       text-transform: uppercase;
     }
     &--score {
       text-align: center;
+    }
+    &--win,
+    &--delete {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3px 5px;
+      margin: 5px 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      border-radius: 5px;
+      color: white;
+      text-align: center;
+    }
+    &--win {
+      font-weight: 700;
+      background-color: rgb(2, 212, 69);
+    }
+    &--delete {
+      position: absolute;
+      right: -30%;
+      cursor: pointer;
+      background-color: rgb(255, 96, 96);
+      &:hover {
+        transform: scale(1.1);
+        background-color: rgb(255, 68, 68);
+      }
     }
   }
 }

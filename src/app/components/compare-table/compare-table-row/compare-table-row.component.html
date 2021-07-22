@@ -1,23 +1,27 @@
 <tr
   class="compare-table__row"
   *ngFor="let item of dataForCompareTable"
-  (click)="toggleValues($event)"
+  (click)="changeRatio(toogleItem.id)"
 >
   <td
-    [ngClass]="{
-      'compare-table__cell': !item.firstItemIsMore,
-      'compare-table__cell compare-table__cell--active': item.firstItemIsMore
-    }"
+    [ngClass]="
+      item.firstItemIsMore
+        ? 'compare-table__cell compare-table__cell--active'
+        : 'compare-table__cell'
+    "
     [id]="item.id"
+    #toogleItem
   >
     {{ item.firstItemName }}
   </td>
   <td
-    [ngClass]="{
-      'compare-table__cell compare-table__cell--active': !item.firstItemIsMore,
-      'compare-table__cell': item.firstItemIsMore
-    }"
+    [ngClass]="
+      !item.firstItemIsMore
+        ? 'compare-table__cell compare-table__cell--active'
+        : 'compare-table__cell'
+    "
     [id]="item.id"
+    #toogleItem
   >
     {{ item.secondItemName }}
   </td>

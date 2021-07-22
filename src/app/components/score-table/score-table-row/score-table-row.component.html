@@ -1,7 +1,24 @@
-<tr *ngFor="let item of arrForRender" class="score-table__body">
+<tr
+  *ngFor="let item of arrForRender; let index = index"
+  class="score-table__body"
+>
   <td class="score-table__body--item">{{ item.name }}</td>
   <td class="score-table__body--score">{{ item.score }}</td>
-  <td class="score-table__body--win">
+  <td
+    [ngClass]="
+      item.score === highestScore
+        ? 'score-table__body--win'
+        : 'score-table__body--item'
+    "
+  >
     {{ item.score === highestScore ? "Winner" : "" }}
+  </td>
+  <td
+    class="score-table__body--delete"
+    id="{{ index }}"
+    #deleteItemButton
+    (click)="deleteItem(deleteItemButton.id)"
+  >
+    delete
   </td>
 </tr>

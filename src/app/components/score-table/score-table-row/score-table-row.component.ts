@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
 
 @Component({
@@ -9,20 +9,25 @@ import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
 export class ScoreTableRowComponent {
   @Input() dataForRender: UserItemType[];
 
+  @Output() deleteItemEvent = new EventEmitter<string>();
+
   highestScore: number | undefined;
-  arrForRender;
+  arrForRender: UserItemType[];
 
   constructor() {}
 
-  ngOnInit() {
-    this.highestScore = this.dataForRender.length // get the hightst score to define winner
-      ? this.dataForRender[0].score
-      : null;
+  deleteItem(id: string) {
+    this.deleteItemEvent.emit(id);
+  }
 
+  ngOnInit() {
     this.arrForRender = this.dataForRender.length
       ? this.dataForRender
           .map((e) => ({ score: this.sumOfScores(e.values), ...e })) // add score property to items
           .sort((a, b) => b.score - a.score) // sort by highest score
+      : null;
+    this.highestScore = this.dataForRender.length // get the hightst score to define winner
+      ? this.arrForRender[0].score
       : null;
   }
 

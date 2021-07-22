@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScoreTableComponent } from './components/score-table/score-table.component';
 import { CompareTableComponent } from './components/compare-table/compare-table.component';
-import { WinnerIconComponent } from './components/winner-icon/winner-icon.component';
 import { UserInputComponent } from './components/user-input/user-input.component';
 import { ResetButtonComponent } from './components/reset-button/reset-button.component';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { ScoreTableHeaderComponent } from './components/score-table/score-table-
     AppComponent,
     ScoreTableComponent,
     CompareTableComponent,
-    WinnerIconComponent,
     UserInputComponent,
     ResetButtonComponent,
     CompareTableRowComponent,

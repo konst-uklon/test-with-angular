@@ -8,12 +8,17 @@
 <div class="app-content">
   <app-score-table *ngIf="userData.length">
     <app-score-table-header header></app-score-table-header>
-    <app-score-table-row body [dataForRender]="userData"></app-score-table-row>
+    <app-score-table-row
+      body
+      [dataForRender]="userData"
+      (deleteItemEvent)="deleteItem($event)"
+    ></app-score-table-row>
   </app-score-table>
   <app-compare-table *ngIf="userData.length > 1">
     <app-compare-table-row
       [data]="userData"
       class="compare-table__row--container"
+      (toggleItemsEvent)="changeRatio($event)"
     >
     </app-compare-table-row>
   </app-compare-table>
