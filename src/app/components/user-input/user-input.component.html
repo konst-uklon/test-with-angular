@@ -1,44 +1,57 @@
-<form class="user__form">
+<form
+  class="user__form"
+  novalidate
+  [formGroup]="userInput"
+  (ngSubmit)="submit()"
+>
   <input
     [ngClass]="
-      newItem.value.length === 0 ||
-      name.hasError('pattern') ||
-      name.hasError('required')
+      userInput.invalid && (userInput.dirty || userInput.touched)
         ? 'user__input user__input--error'
         : 'user__input'
     "
-    name="itemName"
-    type="text"
-    [placeholder]="data.length ? 'Add new item' : 'Add your first item!'"
-    required
-    pattern="^[a-zA-Z0-9 ]+$"
+    [placeholder]="!!data.length ? 'Add new item' : 'Add your first item!'"
+    formControlName="userItem"
     maxlength="8"
-    [(ngModel)]="itemName"
-    #name="ngModel"
-    #newItem
   />
-  <p class="user__error" [hidden]="!name.hasError('pattern')">Incorrect name</p>
-  <p class="user__error" [hidden]="!name.hasError('required')">Required</p>
-  <p class="user__error" [hidden]="!name.hasError('isUnique')">
-    This item already exists
+  <p
+    class="user__error"
+    class="user__error"
+    *ngIf="
+      userInput.get('userItem').errors['required'] &&
+      (userInput.dirty || userInput.touched)
+    "
+  >
+    Required
+  </p>
+  <p
+    class="user__error"
+    class="user__error"
+    *ngIf="
+      userInput.get('userItem').errors['pattern'] &&
+      (userInput.dirty || userInput.touched)
+    "
+  >
+    Incorrect name
   </p>
 
-  <button
-    [ngClass]="
-      newItem.value.length === 0 ||
-      name.hasError('pattern') ||
-      name.hasError('required')
-        ? 'user__submit user__submit--disable'
-        : 'user__submit'
+  <p
+    class="user__error"
+    class="user__error"
+    *ngIf="
+      userInput.get('userItem').errors['usUnique'] &&
+      (userInput.dirty || userInput.touched)
     "
+  >
+    This item already exists
+  </p>
+  <button
     type="submit"
     name="submit"
-    (click)="addNewItem(newItem.value)"
-    [disabled]="
-      newItem.value.length === 0 ||
-      name.hasError('pattern') ||
-      name.hasError('required')
+    [ngClass]="
+      userInput.invalid ? 'user__submit user__submit--disable' : 'user__submit'
     "
+    [disabled]="userInput.invalid"
   >
     Add
   </button>

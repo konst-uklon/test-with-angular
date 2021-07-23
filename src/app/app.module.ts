@@ -7,7 +7,7 @@ import { ScoreTableComponent } from './components/score-table/score-table.compon
 import { CompareTableComponent } from './components/compare-table/compare-table.component';
 import { UserInputComponent } from './components/user-input/user-input.component';
 import { ResetButtonComponent } from './components/reset-button/reset-button.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompareTableRowComponent } from './components/compare-table/compare-table-row/compare-table-row.component';
 import { ScoreTableRowComponent } from './components/score-table/score-table-row/score-table-row.component';
 import { ScoreTableHeaderComponent } from './components/score-table/score-table-header/score-table-header.component';
@@ -23,7 +23,7 @@ import { ScoreTableHeaderComponent } from './components/score-table/score-table-
     ScoreTableRowComponent,
     ScoreTableHeaderComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

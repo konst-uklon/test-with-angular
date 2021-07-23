@@ -1,11 +1,11 @@
 import {
   Component,
-  EventEmitter,
   Input,
   OnInit,
   Output,
   OnChanges,
   ChangeDetectionStrategy,
+  EventEmitter,
 } from '@angular/core';
 import { RenderArrItemType } from '../compare-table.types';
 import { UserItemType } from '../../../app-types/app-types';
@@ -19,7 +19,7 @@ import { UserItemType } from '../../../app-types/app-types';
 export class CompareTableRowComponent implements OnInit, OnChanges {
   dataForCompareTable: RenderArrItemType[] = [];
   @Input() data: UserItemType[] = [];
-  @Output() toggleItemsEvent = new EventEmitter<string>();
+  @Output() public readonly toggleItemsEvent = new EventEmitter<string>();
 
   changeRatio(id: string) {
     this.toggleItemsEvent.emit(id);
@@ -37,8 +37,8 @@ export class CompareTableRowComponent implements OnInit, OnChanges {
 
     for (let i = 0; i < numberOfItems; i++) {
       for (let u = i + 1; u < numberOfItems; u++) {
-        const firstItem = dataArray[i];
-        const secondItem = dataArray[u];
+        const firstItem: UserItemType = dataArray[i];
+        const secondItem: UserItemType = dataArray[u];
         const { name, values } = firstItem;
 
         arr.push({
