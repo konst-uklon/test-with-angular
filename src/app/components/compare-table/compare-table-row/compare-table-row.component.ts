@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   OnChanges,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RenderArrItemType } from '../compare-table.types';
 import { UserItemType } from '../../../app-types/app-types';
@@ -13,6 +14,7 @@ import { UserItemType } from '../../../app-types/app-types';
   selector: 'app-compare-table-row',
   templateUrl: './compare-table-row.component.html',
   styleUrls: ['./compare-table-row.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompareTableRowComponent implements OnInit, OnChanges {
   dataForCompareTable: RenderArrItemType[];

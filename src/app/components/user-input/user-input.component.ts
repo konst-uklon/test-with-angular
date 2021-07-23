@@ -1,18 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { UserItemType } from 'src/app/app-types/app-types';
 
 @Component({
-  // moduleId: module.id,
   selector: 'app-user-input',
   templateUrl: './user-input.component.html',
   styleUrls: ['./user-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInputComponent {
   @Input() data: UserItemType[];
 
   @Output() newItemEvent = new EventEmitter<string>();
-  // error: boolean = false;
-  // errorMassage: string = '';
   public itemName: string;
 
   addNewItem(value: string) {

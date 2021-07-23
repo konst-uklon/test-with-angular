@@ -5,6 +5,7 @@ import {
   OnInit,
   Output,
   OnChanges,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
 
@@ -12,6 +13,7 @@ import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
   selector: 'app-score-table-row',
   templateUrl: './score-table-row.component.html',
   styleUrls: ['./score-table-row.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScoreTableRowComponent implements OnInit, OnChanges {
   @Input() dataForRender: UserItemType[];
