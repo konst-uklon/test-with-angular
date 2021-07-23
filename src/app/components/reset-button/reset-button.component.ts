@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./reset-button.component.scss'],
 })
 export class ResetButtonComponent {
-  @Input() isData; // change if some on page
+  @Input() isData: boolean = false; // change if some on page
 }

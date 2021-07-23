@@ -7,7 +7,7 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
+import { UserItemType, ValuesType } from 'src/app/app-types/app-types';
 
 @Component({
   selector: 'app-score-table-row',
@@ -16,12 +16,12 @@ import { UserItemsArrType, UserItemType } from 'src/app/app-types/app-types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScoreTableRowComponent implements OnInit, OnChanges {
-  @Input() dataForRender: UserItemType[];
+  @Input() data: UserItemType[] = [];
 
   @Output() deleteItemEvent = new EventEmitter<string>();
 
-  highestScore: number | undefined;
-  arrForRender: UserItemType[];
+  highestScore: number | null | undefined = null;
+  arrForRender: UserItemType[] = [];
 
   constructor() {}
 
@@ -30,17 +30,17 @@ export class ScoreTableRowComponent implements OnInit, OnChanges {
   }
   ngOnInit() {}
   ngOnChanges() {
-    this.arrForRender = this.dataForRender.length
-      ? this.dataForRender
+    this.arrForRender = this.data.length
+      ? this.data
           .map((e) => ({ score: this.sumOfScores(e.values), ...e })) // add score property to items
           .sort((a, b) => b.score - a.score) // sort by highest score
-      : null;
-    this.highestScore = this.dataForRender.length // get the hightst score to define winner
+      : [];
+    this.highestScore = this.data.length // get the hightst score to define winner
       ? this.arrForRender[0].score
       : null;
   }
 
-  sumOfScores(arr) {
+  sumOfScores(arr: ValuesType[]) {
     let sum = 0;
     arr.forEach((bool) => (bool ? (sum += 1) : null));
     return sum;

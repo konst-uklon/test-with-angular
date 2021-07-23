@@ -17,8 +17,8 @@ import { UserItemType } from '../../../app-types/app-types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompareTableRowComponent implements OnInit, OnChanges {
-  dataForCompareTable: RenderArrItemType[];
-  @Input() data: UserItemType[];
+  dataForCompareTable: RenderArrItemType[] = [];
+  @Input() data: UserItemType[] = [];
   @Output() toggleItemsEvent = new EventEmitter<string>();
 
   changeRatio(id: string) {
@@ -31,7 +31,7 @@ export class CompareTableRowComponent implements OnInit, OnChanges {
     this.dataForCompareTable = this.getRenderArr(this.data);
   }
 
-  getRenderArr(dataArray) {
+  getRenderArr(dataArray: UserItemType[]) {
     const numberOfItems: number = dataArray.length;
     let arr: RenderArrItemType[] = [];
 

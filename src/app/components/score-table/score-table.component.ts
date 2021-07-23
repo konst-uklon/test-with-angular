@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { UserItemType } from 'src/app/app-types/app-types';
-import { HeaderDataType } from './score-table.types';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-score-table',

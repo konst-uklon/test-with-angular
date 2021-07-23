@@ -14,10 +14,10 @@ import { UserItemType } from 'src/app/app-types/app-types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInputComponent {
-  @Input() data: UserItemType[];
+  @Input() data: UserItemType[] = [];
 
   @Output() newItemEvent = new EventEmitter<string>();
-  public itemName: string;
+  public itemName: string = '';
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);

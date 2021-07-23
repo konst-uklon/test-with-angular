@@ -10,7 +10,7 @@
     <app-score-table-header header></app-score-table-header>
     <app-score-table-row
       body
-      [dataForRender]="userData"
+      [data]="userData"
       (deleteItemEvent)="deleteItem($event)"
     ></app-score-table-row>
   </app-score-table>
@@ -24,6 +24,6 @@
   </app-compare-table>
 </div>
 <app-reset-button
-  [isData]="userData.length"
+  [isData]="!!userData.length"
   (click)="resetAppData()"
 ></app-reset-button>

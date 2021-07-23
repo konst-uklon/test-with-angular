@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserItemType, ValuesType } from './app-types/app-types';
 
 @Component({
@@ -8,12 +8,11 @@ import { UserItemType, ValuesType } from './app-types/app-types';
 })
 export class AppComponent {
   readonly title: string = 'angular-test-app';
-  userData: UserItemType[] =
-    JSON.parse(localStorage.getItem('user-items')) || [];
+  LSJson: string | null = localStorage.getItem('user-items');
+  localStorageData: UserItemType[] = this.LSJson ? JSON.parse(this.LSJson) : [];
+  userData: UserItemType[] = this.localStorageData;
 
   changeAppData(newData?: UserItemType[]) {
-    console.log(newData);
-
     if (newData) {
       this.userData = newData;
       localStorage.setItem('user-items', JSON.stringify(newData));
@@ -28,7 +27,7 @@ export class AppComponent {
   }
 
   deleteItem(id: string) {
-    let { userData } = this;
+    const { userData } = this;
     const newData = userData
       .filter((el, index) => index !== +id) // removing an item from app data
       .map((el) => {
@@ -39,7 +38,7 @@ export class AppComponent {
   }
 
   addNewItem(itemName: string) {
-    let { userData } = this;
+    const { userData } = this;
     // array for new item, will fill with the relation of the new item to the existing ones
     const newItemValuesArr: ValuesType[] = [
       ...Array(userData.length).fill(false),
@@ -63,7 +62,7 @@ export class AppComponent {
   }
 
   changeRatio(id: string) {
-    let { userData } = this;
+    const { userData } = this;
     const idArr = id.split(',').map((el: string) => +el); // create an id arr and convert all elements from string to numbers
     const [firstItemIndex, secondItemIndex] = idArr; //we have only 2 parameters, since we set them in the line 46 of this component
     const changeBool = (e: UserItemType, indexOfCompareElem: number) => {

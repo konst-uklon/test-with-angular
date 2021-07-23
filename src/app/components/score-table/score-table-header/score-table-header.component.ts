@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderDataType } from '../score-table.types';
 
 @Component({
@@ -6,14 +6,10 @@ import { HeaderDataType } from '../score-table.types';
   templateUrl: './score-table-header.component.html',
   styleUrls: ['./score-table-header.component.scss'],
 })
-export class ScoreTableHeaderComponent implements OnInit {
+export class ScoreTableHeaderComponent {
   readonly dataForRender: HeaderDataType[] = [
     { textContent: 'Item' },
     { textContent: 'Score' },
     { textContent: '' },
   ];
-
-  constructor() {}
-
-  ngOnInit() {}
 }
