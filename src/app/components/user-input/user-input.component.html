@@ -6,7 +6,8 @@
 >
   <input
     [ngClass]="
-      userInput.invalid && (userInput.dirty || userInput.touched)
+      userInput.get('userItem')?.errors &&
+      (userInput.dirty || userInput.touched)
         ? 'user__input user__input--error'
         : 'user__input'
     "
@@ -14,44 +15,54 @@
     formControlName="userItem"
     maxlength="8"
   />
-  <!-- <p
-    class="user__error"
-    class="user__error"
+  <div
+    class="user__error--block"
     *ngIf="
-      userInput.get('userItem').errors['required'] &&
+      userInput.get('userItem')?.errors &&
       (userInput.dirty || userInput.touched)
     "
   >
-    Required
-  </p>
-  <p
-    class="user__error"
-    class="user__error"
-    *ngIf="
-      userInput.get('userItem').errors['pattern'] &&
-      (userInput.dirty || userInput.touched)
-    "
-  >
-    Incorrect name
-  </p>
+    <p
+      class="user__error"
+      *ngIf="
+        userInput.get('userItem')?.errors?.required &&
+        (userInput.dirty || userInput.touched)
+      "
+    >
+      Required
+    </p>
 
-  <p
-    class="user__error"
-    class="user__error"
-    *ngIf="
-      userInput.get('userItem').errors['usUnique'] &&
-      (userInput.dirty || userInput.touched)
-    "
-  >
-    This item already exists
-  </p> -->
+    <p
+      class="user__error"
+      class="user__error"
+      *ngIf="
+        userInput.get('userItem')?.errors?.pattern &&
+        (userInput.dirty || userInput.touched)
+      "
+    >
+      Incorrect name
+    </p>
+
+    <p
+      class="user__error"
+      class="user__error"
+      *ngIf="
+        userInput.get('userItem')?.errors?.nonUnique &&
+        (userInput.dirty || userInput.touched)
+      "
+    >
+      This item already exists
+    </p>
+  </div>
   <button
     type="submit"
     name="submit"
     [ngClass]="
-      userInput.invalid ? 'user__submit user__submit--disable' : 'user__submit'
+      userInput.get('userItem')?.errors
+        ? 'user__submit user__submit--disable'
+        : 'user__submit'
     "
-    [disabled]="userInput.invalid"
+    [disabled]="userInput.get('userItem')?.errors"
   >
     Add
   </button>

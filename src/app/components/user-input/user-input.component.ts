@@ -26,29 +26,31 @@ export class UserInputComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();
   public userItem: string = '';
   private inputPattern = '^[a-zA-Z0-9 ]+$';
-  userInput!: FormGroup;
+  userInput: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.userInput = new FormGroup({});
+  }
 
   ngOnInit() {
     this.userInput = new FormGroup({
-      userItem: new FormControl('', [
+      userItem: new FormControl(null, [
         Validators.required,
         Validators.pattern(this.inputPattern),
         this.isUnique.bind(this),
       ]),
     });
   }
-  constructor(private formBuilder: FormBuilder) {}
 
   isUnique(control: FormControl): {
-    [unUnique: string]: boolean;
+    [nonUnique: string]: boolean;
   } | null {
-    console.log(control);
     const value = control.value;
     const namesValues = !!this.data.length
       ? this.data.map((item) => item.name)
       : '';
-    if (namesValues.includes(value.toUpperCase())) {
-      return { unUnique: true };
+    if (value && namesValues.includes(value.toUpperCase())) {
+      return { nonUnique: true };
     }
     return null;
   }

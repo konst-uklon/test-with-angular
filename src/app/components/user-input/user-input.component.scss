@@ -39,9 +39,9 @@
     }
   }
 
-  &__error {
+  &__error--block {
     position: absolute;
-    bottom: -50%;
+    bottom: -80%;
     width: 80%;
     color: red;
     text-align: center;
