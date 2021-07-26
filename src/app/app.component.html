@@ -2,7 +2,7 @@
 <div class="app-header">
   <app-user-input
     [data]="userData"
-    (newItemEvent)="addNewItem($event)"
+    (newItemEvent)="changeAppData($event)"
   ></app-user-input>
 </div>
 <div class="app-content">
@@ -11,19 +11,19 @@
     <app-score-table-row
       body
       [data]="userData"
-      (deleteItemEvent)="deleteItem($event)"
+      (deleteItemEvent)="changeAppData($event)"
     ></app-score-table-row>
   </app-score-table>
   <app-compare-table *ngIf="userData.length > 1">
     <app-compare-table-row
       [data]="userData"
       class="compare-table__row--container"
-      (toggleItemsEvent)="changeRatio($event)"
+      (toggleItemsEvent)="changeAppData($event)"
     >
     </app-compare-table-row>
   </app-compare-table>
 </div>
 <app-reset-button
   [isData]="!!userData.length"
-  (click)="resetAppData()"
+  (click)="changeAppData()"
 ></app-reset-button>

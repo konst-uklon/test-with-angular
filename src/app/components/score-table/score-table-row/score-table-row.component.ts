@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   OnChanges,
   ChangeDetectionStrategy,
@@ -15,20 +14,14 @@ import { UserItemType, ValuesType } from 'src/app/app-types/app-types';
   styleUrls: ['./score-table-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScoreTableRowComponent implements OnInit, OnChanges {
+export class ScoreTableRowComponent implements OnChanges {
   @Input() data: UserItemType[] = [];
 
-  @Output() deleteItemEvent = new EventEmitter<string>();
+  @Output() deleteItemEvent = new EventEmitter<UserItemType[]>();
 
   highestScore: number | null | undefined = null;
   arrForRender: UserItemType[] = [];
 
-  constructor() {}
-
-  deleteItem(id: string) {
-    this.deleteItemEvent.emit(id);
-  }
-  ngOnInit() {}
   ngOnChanges() {
     this.arrForRender = this.data.length
       ? this.data
@@ -38,6 +31,18 @@ export class ScoreTableRowComponent implements OnInit, OnChanges {
     this.highestScore = this.data.length // get the hightst score to define winner
       ? this.arrForRender[0].score
       : null;
+  }
+
+  deleteItem(id: string) {
+    const { data } = this;
+    const newData = data
+      .filter((el, index) => index !== +id) // removing an item from app data
+      .map((el) => {
+        el.values.splice(+id, 1); // removing the dependency of the element in the values property from the deleted element
+        return el;
+      });
+
+    this.deleteItemEvent.emit(newData);
   }
 
   sumOfScores(arr: ValuesType[]) {
